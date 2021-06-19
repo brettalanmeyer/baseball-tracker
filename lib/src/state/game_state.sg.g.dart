@@ -17,12 +17,31 @@ class _$GameState extends GameState {
   final int inning;
   @override
   final InningType inningType;
+  @override
+  final Player atBat;
+  @override
+  final int balls;
+  @override
+  final int strikes;
+  @override
+  final int outs;
+  @override
+  final int pitches;
 
   factory _$GameState([void Function(GameStateBuilder) updates]) =>
       (new GameStateBuilder()..update(updates)).build();
 
   _$GameState._(
-      {this.history, this.away, this.home, this.inning, this.inningType})
+      {this.history,
+      this.away,
+      this.home,
+      this.inning,
+      this.inningType,
+      this.atBat,
+      this.balls,
+      this.strikes,
+      this.outs,
+      this.pitches})
       : super._() {
     if (history == null) {
       throw new BuiltValueNullFieldError('GameState', 'history');
@@ -38,6 +57,18 @@ class _$GameState extends GameState {
     }
     if (inningType == null) {
       throw new BuiltValueNullFieldError('GameState', 'inningType');
+    }
+    if (balls == null) {
+      throw new BuiltValueNullFieldError('GameState', 'balls');
+    }
+    if (strikes == null) {
+      throw new BuiltValueNullFieldError('GameState', 'strikes');
+    }
+    if (outs == null) {
+      throw new BuiltValueNullFieldError('GameState', 'outs');
+    }
+    if (pitches == null) {
+      throw new BuiltValueNullFieldError('GameState', 'pitches');
     }
   }
 
@@ -56,15 +87,34 @@ class _$GameState extends GameState {
         away == other.away &&
         home == other.home &&
         inning == other.inning &&
-        inningType == other.inningType;
+        inningType == other.inningType &&
+        atBat == other.atBat &&
+        balls == other.balls &&
+        strikes == other.strikes &&
+        outs == other.outs &&
+        pitches == other.pitches;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc($jc(0, history.hashCode), away.hashCode), home.hashCode),
-            inning.hashCode),
-        inningType.hashCode));
+        $jc(
+            $jc(
+                $jc(
+                    $jc(
+                        $jc(
+                            $jc(
+                                $jc(
+                                    $jc($jc(0, history.hashCode),
+                                        away.hashCode),
+                                    home.hashCode),
+                                inning.hashCode),
+                            inningType.hashCode),
+                        atBat.hashCode),
+                    balls.hashCode),
+                strikes.hashCode),
+            outs.hashCode),
+        pitches.hashCode));
   }
 
   @override
@@ -74,7 +124,12 @@ class _$GameState extends GameState {
           ..add('away', away)
           ..add('home', home)
           ..add('inning', inning)
-          ..add('inningType', inningType))
+          ..add('inningType', inningType)
+          ..add('atBat', atBat)
+          ..add('balls', balls)
+          ..add('strikes', strikes)
+          ..add('outs', outs)
+          ..add('pitches', pitches))
         .toString();
   }
 }
@@ -103,6 +158,26 @@ class GameStateBuilder implements Builder<GameState, GameStateBuilder> {
   InningType get inningType => _$this._inningType;
   set inningType(InningType inningType) => _$this._inningType = inningType;
 
+  Player _atBat;
+  Player get atBat => _$this._atBat;
+  set atBat(Player atBat) => _$this._atBat = atBat;
+
+  int _balls;
+  int get balls => _$this._balls;
+  set balls(int balls) => _$this._balls = balls;
+
+  int _strikes;
+  int get strikes => _$this._strikes;
+  set strikes(int strikes) => _$this._strikes = strikes;
+
+  int _outs;
+  int get outs => _$this._outs;
+  set outs(int outs) => _$this._outs = outs;
+
+  int _pitches;
+  int get pitches => _$this._pitches;
+  set pitches(int pitches) => _$this._pitches = pitches;
+
   GameStateBuilder();
 
   GameStateBuilder get _$this {
@@ -112,6 +187,11 @@ class GameStateBuilder implements Builder<GameState, GameStateBuilder> {
       _home = _$v.home?.toBuilder();
       _inning = _$v.inning;
       _inningType = _$v.inningType;
+      _atBat = _$v.atBat;
+      _balls = _$v.balls;
+      _strikes = _$v.strikes;
+      _outs = _$v.outs;
+      _pitches = _$v.pitches;
       _$v = null;
     }
     return this;
@@ -140,7 +220,12 @@ class GameStateBuilder implements Builder<GameState, GameStateBuilder> {
               away: away.build(),
               home: home.build(),
               inning: inning,
-              inningType: inningType);
+              inningType: inningType,
+              atBat: atBat,
+              balls: balls,
+              strikes: strikes,
+              outs: outs,
+              pitches: pitches);
     } catch (_) {
       String _$failedField;
       try {

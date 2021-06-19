@@ -1,4 +1,6 @@
 import 'package:baseball_stat_tracker/src/actions.dart';
+import 'package:baseball_stat_tracker/src/constants/inning_type.dart';
+import 'package:baseball_stat_tracker/src/constants/pitch_result.dart';
 import 'package:baseball_stat_tracker/src/state/game_state.sg.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:redux/redux.dart';
@@ -35,16 +37,55 @@ GameState _setBattingOrder(GameState state, SetBattingOrder action) {
 
 GameState _playBall(GameState state, PlayBall action) {
   return state.rebuild((b) {
-    b.inning = 1;
+    if (state.inning == 0) {
+      b.inningType = InningType.top;
+      b.inning = 1;
+      return;
+    }
+
+    if (state.inningType == InningType.middle) {
+      b.inningType = InningType.bottom;
+      return;
+    }
+
+    b.inningType = InningType.top;
+    b.inning++;
   });
 }
 
-GameState _setAwayScores(GameState state, SetAwayScores action) {
-  return state.rebuild((b) => b.away.scores = ListBuilder(action.scores));
-}
+GameState _pitch(GameState state, Pitch action) {
+  return state.rebuild((b) {
+    b.pitches++;
 
-GameState _setHomeScores(GameState state, SetHomeScores action) {
-  return state.rebuild((b) => b.home.scores =  ListBuilder(action.scores));
+    switch(action.result) {
+      case PitchResult.strike:
+        b.strikes++;
+        if (b.strikes == 3) {
+          b.strikes = 0;
+          b.outs++;
+        }
+        break;
+
+      case PitchResult.ball:
+        b.balls++;
+        if (b.balls == 4) {
+          b.balls = 0;
+        }
+        break;
+
+      case PitchResult.foul:
+        if (b.strikes < 2) {
+          b.strikes++;
+        }
+        break;
+
+      case PitchResult.hit:
+        break;
+
+      case PitchResult.hitByPitch:
+        break;
+    }
+  });
 }
 
 Reducer<GameState> gameReducer = combineReducers<GameState>([
@@ -52,7 +93,5 @@ Reducer<GameState> gameReducer = combineReducers<GameState>([
   TypedReducer<GameState, SetDefense>(_setDefense),
   TypedReducer<GameState, SetBattingOrder>(_setBattingOrder),
   TypedReducer<GameState, PlayBall>(_playBall),
-
-  TypedReducer<GameState, SetAwayScores>(_setAwayScores),
-  TypedReducer<GameState, SetHomeScores>(_setHomeScores),
+  TypedReducer<GameState, Pitch>(_pitch),
 ]);

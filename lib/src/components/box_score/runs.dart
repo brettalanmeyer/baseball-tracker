@@ -10,16 +10,16 @@ part 'runs.over_react.g.dart'; // ignore: uri_has_not_been_generated
 UiFactory<RunsProps> Runs = connect<GameState, RunsProps>(
   mapStateToProps: ((state) {
     return (Runs()
-      ..awayScores = state.away.scores
-      ..homeScores = state.home.scores
-      ..numInnings = max(max(state.away.scores.length, state.home.scores.length), 9)
+      ..awayRuns = state.away.runsPerInning
+      ..homeRuns = state.home.runsPerInning
+      ..numInnings = max(max(state.away.runsPerInning.length, state.home.runsPerInning.length), 9)
     );
   }),
 )(castUiFactory(_$Runs)); // ignore: undefined_identifier
 
 mixin RunsPropsMixin on UiProps {
-  BuiltList<int> awayScores;
-  BuiltList<int> homeScores;
+  BuiltList<int> awayRuns;
+  BuiltList<int> homeRuns;
   int numInnings;
 }
 
@@ -47,7 +47,7 @@ class RunsComponent extends UiComponent2<RunsProps> {
     return Dom.div() (
       (Dom.div()..className = 'pitch')(36),
       (Dom.div()..className = 'name')('Cubs'),
-      _innings(props.awayScores),
+      _innings(props.awayRuns),
     );
   }
 
@@ -55,7 +55,7 @@ class RunsComponent extends UiComponent2<RunsProps> {
     return Dom.div() (
       (Dom.div()..className = 'pitch')(36),
       (Dom.div()..className = 'name')('Cardinals'),
-      _innings(props.homeScores),
+      _innings(props.homeRuns),
     );
   }
 

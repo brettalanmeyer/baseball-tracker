@@ -1,4 +1,10 @@
+import 'dart:math';
+
+import 'package:baseball_stat_tracker/src/constants/pitch_result.dart';
 import 'package:baseball_stat_tracker/src/teams/team.dart';
+
+import 'constants/bases.dart';
+import 'constants/pitch_type.dart';
 
 class SetTeams with History {
   final Team away;
@@ -37,17 +43,27 @@ class SetBattingOrder with History {
   SetBattingOrder(this.team, this.battingOrder);
 }
 
+class Pitch with History {
+  final PitchType type;
+  final num velocity;
+  final Point<num> target;
+  final PitchResult result;
+  final bool swing;
+  final Base baseReached;
+  final bool dropped;
+
+  Pitch({
+    this.type,
+    this.velocity,
+    this.target,
+    this.result,
+    this.swing,
+    this.baseReached,
+    this.dropped,
+  });
+}
+
 class PlayBall with History {}
-
-class SetAwayScores with History {
-  final List<int> scores;
-  SetAwayScores(this.scores);
-}
-
-class SetHomeScores with History {
-  final List<int> scores;
-  SetHomeScores(this.scores);
-}
 
 class Undo {}
 

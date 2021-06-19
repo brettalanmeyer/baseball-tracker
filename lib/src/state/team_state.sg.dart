@@ -10,14 +10,18 @@ abstract class TeamState implements Built<TeamState, TeamStateBuilder> {
   factory TeamState({
     Team team,
     List<Player> battingOrder = const [],
-    int score = 0,
-    List<int> scores = const [],
+    List<int> runsPerInning = const [],
+    int runs = 0,
+    int hits = 0,
+    int errors = 0,
   }) {
     return _$TeamState._(
       team: team,
       battingOrder: BuiltList<Player>(battingOrder),
-      score: score,
-      scores: BuiltList<int>(scores),
+      runsPerInning: BuiltList<int>(runsPerInning),
+      runs: runs,
+      hits: hits,
+      errors: errors,
     );
   }
 
@@ -26,8 +30,11 @@ abstract class TeamState implements Built<TeamState, TeamStateBuilder> {
   @nullable
   Team get team;
   BuiltList<Player> get battingOrder;
-  int get score;
-  BuiltList<int> get scores;
+
+  BuiltList<int> get runsPerInning;
+  int get runs;
+  int get hits;
+  int get errors;
 
   @nullable
   Player get pitcher;

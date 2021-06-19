@@ -12,9 +12,13 @@ class _$TeamState extends TeamState {
   @override
   final BuiltList<Player> battingOrder;
   @override
-  final int score;
+  final BuiltList<int> runsPerInning;
   @override
-  final BuiltList<int> scores;
+  final int runs;
+  @override
+  final int hits;
+  @override
+  final int errors;
   @override
   final Player pitcher;
   @override
@@ -40,8 +44,10 @@ class _$TeamState extends TeamState {
   _$TeamState._(
       {this.team,
       this.battingOrder,
-      this.score,
-      this.scores,
+      this.runsPerInning,
+      this.runs,
+      this.hits,
+      this.errors,
       this.pitcher,
       this.catcher,
       this.first,
@@ -55,11 +61,17 @@ class _$TeamState extends TeamState {
     if (battingOrder == null) {
       throw new BuiltValueNullFieldError('TeamState', 'battingOrder');
     }
-    if (score == null) {
-      throw new BuiltValueNullFieldError('TeamState', 'score');
+    if (runsPerInning == null) {
+      throw new BuiltValueNullFieldError('TeamState', 'runsPerInning');
     }
-    if (scores == null) {
-      throw new BuiltValueNullFieldError('TeamState', 'scores');
+    if (runs == null) {
+      throw new BuiltValueNullFieldError('TeamState', 'runs');
+    }
+    if (hits == null) {
+      throw new BuiltValueNullFieldError('TeamState', 'hits');
+    }
+    if (errors == null) {
+      throw new BuiltValueNullFieldError('TeamState', 'errors');
     }
   }
 
@@ -76,8 +88,10 @@ class _$TeamState extends TeamState {
     return other is TeamState &&
         team == other.team &&
         battingOrder == other.battingOrder &&
-        score == other.score &&
-        scores == other.scores &&
+        runsPerInning == other.runsPerInning &&
+        runs == other.runs &&
+        hits == other.hits &&
+        errors == other.errors &&
         pitcher == other.pitcher &&
         catcher == other.catcher &&
         first == other.first &&
@@ -102,10 +116,17 @@ class _$TeamState extends TeamState {
                                     $jc(
                                         $jc(
                                             $jc(
-                                                $jc($jc(0, team.hashCode),
-                                                    battingOrder.hashCode),
-                                                score.hashCode),
-                                            scores.hashCode),
+                                                $jc(
+                                                    $jc(
+                                                        $jc(
+                                                            $jc(0,
+                                                                team.hashCode),
+                                                            battingOrder
+                                                                .hashCode),
+                                                        runsPerInning.hashCode),
+                                                    runs.hashCode),
+                                                hits.hashCode),
+                                            errors.hashCode),
                                         pitcher.hashCode),
                                     catcher.hashCode),
                                 first.hashCode),
@@ -122,8 +143,10 @@ class _$TeamState extends TeamState {
     return (newBuiltValueToStringHelper('TeamState')
           ..add('team', team)
           ..add('battingOrder', battingOrder)
-          ..add('score', score)
-          ..add('scores', scores)
+          ..add('runsPerInning', runsPerInning)
+          ..add('runs', runs)
+          ..add('hits', hits)
+          ..add('errors', errors)
           ..add('pitcher', pitcher)
           ..add('catcher', catcher)
           ..add('first', first)
@@ -150,13 +173,23 @@ class TeamStateBuilder implements Builder<TeamState, TeamStateBuilder> {
   set battingOrder(ListBuilder<Player> battingOrder) =>
       _$this._battingOrder = battingOrder;
 
-  int _score;
-  int get score => _$this._score;
-  set score(int score) => _$this._score = score;
+  ListBuilder<int> _runsPerInning;
+  ListBuilder<int> get runsPerInning =>
+      _$this._runsPerInning ??= new ListBuilder<int>();
+  set runsPerInning(ListBuilder<int> runsPerInning) =>
+      _$this._runsPerInning = runsPerInning;
 
-  ListBuilder<int> _scores;
-  ListBuilder<int> get scores => _$this._scores ??= new ListBuilder<int>();
-  set scores(ListBuilder<int> scores) => _$this._scores = scores;
+  int _runs;
+  int get runs => _$this._runs;
+  set runs(int runs) => _$this._runs = runs;
+
+  int _hits;
+  int get hits => _$this._hits;
+  set hits(int hits) => _$this._hits = hits;
+
+  int _errors;
+  int get errors => _$this._errors;
+  set errors(int errors) => _$this._errors = errors;
 
   Player _pitcher;
   Player get pitcher => _$this._pitcher;
@@ -200,8 +233,10 @@ class TeamStateBuilder implements Builder<TeamState, TeamStateBuilder> {
     if (_$v != null) {
       _team = _$v.team;
       _battingOrder = _$v.battingOrder?.toBuilder();
-      _score = _$v.score;
-      _scores = _$v.scores?.toBuilder();
+      _runsPerInning = _$v.runsPerInning?.toBuilder();
+      _runs = _$v.runs;
+      _hits = _$v.hits;
+      _errors = _$v.errors;
       _pitcher = _$v.pitcher;
       _catcher = _$v.catcher;
       _first = _$v.first;
@@ -237,8 +272,10 @@ class TeamStateBuilder implements Builder<TeamState, TeamStateBuilder> {
           new _$TeamState._(
               team: team,
               battingOrder: battingOrder.build(),
-              score: score,
-              scores: scores.build(),
+              runsPerInning: runsPerInning.build(),
+              runs: runs,
+              hits: hits,
+              errors: errors,
               pitcher: pitcher,
               catcher: catcher,
               first: first,
@@ -253,9 +290,8 @@ class TeamStateBuilder implements Builder<TeamState, TeamStateBuilder> {
       try {
         _$failedField = 'battingOrder';
         battingOrder.build();
-
-        _$failedField = 'scores';
-        scores.build();
+        _$failedField = 'runsPerInning';
+        runsPerInning.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'TeamState', _$failedField, e.toString());
