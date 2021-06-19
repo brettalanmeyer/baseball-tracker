@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.box-score {
+  display: flex;
+  flex-flow: row wrap;
+  border: solid 1px black;
+  margin: 20px;
+  padding: 8px;
+}
+
+.box-score .park-name {
+  width: 100%;
+}
+
+.box-score .left {
+  width: 75%;
+  display: flex;
+}
+
+.box-score .right {
+  width: 25%;
+  display: flex;
+}
+
+.box-score .runs {
+  width: 80%;
+}
+
+.box-score .runs > div {
+  display: flex;
+}
+
+.box-score .runs .pitch {
+  width: 20px;
+}
+
+.box-score .runs .name {
+  width: 150px;
+}
+
+.box-score .runs .innings {
+  display: flex;
+}
+
+.box-score .runs .innings .inning {
+  width: 20px;
+  border: solid 1px black;
+  text-align: center;
+  line-height: 20px;
+}
+
+.box-score .stats {
+  width: 20%;
+}
