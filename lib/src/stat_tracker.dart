@@ -2,21 +2,21 @@
 import 'package:baseball_stat_tracker/src/middleware.dart';
 import 'package:baseball_stat_tracker/src/reducers/game.dart';
 import 'package:baseball_stat_tracker/src/reducers/history.dart';
-import 'package:baseball_stat_tracker/src/state/stat_tracker_state.sg.dart';
+import 'package:baseball_stat_tracker/src/state/game_state.sg.dart';
 // import 'package:over_react/over_react.dart';
 // import 'package:over_react/over_react_redux.dart';
 import 'package:redux/redux.dart';
 
 class StatTracker {
-  Store<StatTrackerState> store;
+  Store<GameState> store;
 
   StatTracker() {
-    store = Store<StatTrackerState>(
-      combineReducers<StatTrackerState>([
+    store = Store<GameState>(
+      combineReducers<GameState>([
         gameReducer,
         historyReducer,
       ]),
-      initialState: StatTrackerState(),
+      initialState: GameState(),
       middleware: middleware(),
       distinct: true,
     );

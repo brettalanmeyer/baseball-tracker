@@ -1,8 +1,8 @@
 import 'package:baseball_stat_tracker/src/actions.dart';
-import 'package:baseball_stat_tracker/src/state/stat_tracker_state.sg.dart';
+import 'package:baseball_stat_tracker/src/state/game_state.sg.dart';
 import 'package:redux/redux.dart';
 
-StatTrackerState _history(StatTrackerState state, History action) {
+GameState _history(GameState state, History action) {
   return state.rebuild((b) {
     b.history.past.add(action);
     b.history.present = action;
@@ -10,7 +10,7 @@ StatTrackerState _history(StatTrackerState state, History action) {
   });
 }
 
-StatTrackerState _undo(StatTrackerState state, Undo action) {
+GameState _undo(GameState state, Undo action) {
   return state.rebuild((b) {
     if (b.history.past.isEmpty) {
       return;
@@ -27,7 +27,7 @@ StatTrackerState _undo(StatTrackerState state, Undo action) {
   });
 }
 
-StatTrackerState _redo(StatTrackerState state, Redo action) {
+GameState _redo(GameState state, Redo action) {
   return state.rebuild((b) {
      if (b.history.future.isEmpty) {
       return;
@@ -39,9 +39,8 @@ StatTrackerState _redo(StatTrackerState state, Redo action) {
   });
 }
 
-Reducer<StatTrackerState> historyReducer = combineReducers<StatTrackerState>([
-  TypedReducer<StatTrackerState, History>(_history),
-  TypedReducer<StatTrackerState, Undo>(_undo),
-  TypedReducer<StatTrackerState, Redo>(_redo),
+Reducer<GameState> historyReducer = combineReducers<GameState>([
+  TypedReducer<GameState, History>(_history),
+  TypedReducer<GameState, Undo>(_undo),
+  TypedReducer<GameState, Redo>(_redo),
 ]);
-

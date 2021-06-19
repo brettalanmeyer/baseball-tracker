@@ -2,20 +2,20 @@ library stat_tracker_state;
 
 import 'package:baseball_stat_tracker/src/constants/inning_type.dart';
 import 'package:baseball_stat_tracker/src/state/history_state.sg.dart';
-import 'package:baseball_stat_tracker/src/state/team.sg.dart';
+import 'package:baseball_stat_tracker/src/state/team_state.sg.dart';
 import 'package:built_value/built_value.dart';
 
-part 'stat_tracker_state.sg.g.dart';
+part 'game_state.sg.g.dart';
 
-abstract class StatTrackerState implements Built<StatTrackerState, StatTrackerStateBuilder> {
-  factory StatTrackerState({
+abstract class GameState implements Built<GameState, GameStateBuilder> {
+  factory GameState({
     HistoryState history,
     TeamState away,
     TeamState home,
     int inning = 0,
     InningType inningType = InningType.top,
   }) {
-    return _$StatTrackerState._(
+    return _$GameState._(
       history: history ?? HistoryState(),
       away: away ?? TeamState(),
       home: home ?? TeamState(),
@@ -24,9 +24,10 @@ abstract class StatTrackerState implements Built<StatTrackerState, StatTrackerSt
     );
   }
 
-  StatTrackerState._();
+  GameState._();
 
   HistoryState get history;
+
   TeamState get away;
   TeamState get home;
   int get inning;

@@ -1,16 +1,16 @@
 import 'package:baseball_stat_tracker/src/actions.dart';
-import 'package:baseball_stat_tracker/src/state/stat_tracker_state.sg.dart';
+import 'package:baseball_stat_tracker/src/state/game_state.sg.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:redux/redux.dart';
 
-StatTrackerState _setTeams(StatTrackerState state, SetTeams action) {
+GameState _setTeams(GameState state, SetTeams action) {
   return state.rebuild((b) {
     b.away.team = action.away;
     b.home.team = action.home;
   });
 }
 
-StatTrackerState _setDefense(StatTrackerState state, SetDefense action) {
+GameState _setDefense(GameState state, SetDefense action) {
   return state.rebuild((b) {
     final team = b.away.team == action.team ? b.away : b.home;
 
@@ -26,33 +26,33 @@ StatTrackerState _setDefense(StatTrackerState state, SetDefense action) {
   });
 }
 
-StatTrackerState _setBattingOrder(StatTrackerState state, SetBattingOrder action) {
+GameState _setBattingOrder(GameState state, SetBattingOrder action) {
   return state.rebuild((b) {
     final team = b.away.team == action.team ? b.away : b.home;
     team.battingOrder = ListBuilder(action.battingOrder);
   });
 }
 
-StatTrackerState _playBall(StatTrackerState state, PlayBall action) {
+GameState _playBall(GameState state, PlayBall action) {
   return state.rebuild((b) {
     b.inning = 1;
   });
 }
 
-StatTrackerState _setAwayScores(StatTrackerState state, SetAwayScores action) {
+GameState _setAwayScores(GameState state, SetAwayScores action) {
   return state.rebuild((b) => b.away.scores = ListBuilder(action.scores));
 }
 
-StatTrackerState _setHomeScores(StatTrackerState state, SetHomeScores action) {
+GameState _setHomeScores(GameState state, SetHomeScores action) {
   return state.rebuild((b) => b.home.scores =  ListBuilder(action.scores));
 }
 
-Reducer<StatTrackerState> gameReducer = combineReducers<StatTrackerState>([
-  TypedReducer<StatTrackerState, SetTeams>(_setTeams),
-  TypedReducer<StatTrackerState, SetDefense>(_setDefense),
-  TypedReducer<StatTrackerState, SetBattingOrder>(_setBattingOrder),
-  TypedReducer<StatTrackerState, PlayBall>(_playBall),
+Reducer<GameState> gameReducer = combineReducers<GameState>([
+  TypedReducer<GameState, SetTeams>(_setTeams),
+  TypedReducer<GameState, SetDefense>(_setDefense),
+  TypedReducer<GameState, SetBattingOrder>(_setBattingOrder),
+  TypedReducer<GameState, PlayBall>(_playBall),
 
-  TypedReducer<StatTrackerState, SetAwayScores>(_setAwayScores),
-  TypedReducer<StatTrackerState, SetHomeScores>(_setHomeScores),
+  TypedReducer<GameState, SetAwayScores>(_setAwayScores),
+  TypedReducer<GameState, SetHomeScores>(_setHomeScores),
 ]);

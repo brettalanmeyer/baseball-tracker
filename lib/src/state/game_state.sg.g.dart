@@ -6,7 +6,7 @@ part of stat_tracker_state;
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$StatTrackerState extends StatTrackerState {
+class _$GameState extends GameState {
   @override
   final HistoryState history;
   @override
@@ -18,42 +18,40 @@ class _$StatTrackerState extends StatTrackerState {
   @override
   final InningType inningType;
 
-  factory _$StatTrackerState(
-          [void Function(StatTrackerStateBuilder) updates]) =>
-      (new StatTrackerStateBuilder()..update(updates)).build();
+  factory _$GameState([void Function(GameStateBuilder) updates]) =>
+      (new GameStateBuilder()..update(updates)).build();
 
-  _$StatTrackerState._(
+  _$GameState._(
       {this.history, this.away, this.home, this.inning, this.inningType})
       : super._() {
     if (history == null) {
-      throw new BuiltValueNullFieldError('StatTrackerState', 'history');
+      throw new BuiltValueNullFieldError('GameState', 'history');
     }
     if (away == null) {
-      throw new BuiltValueNullFieldError('StatTrackerState', 'away');
+      throw new BuiltValueNullFieldError('GameState', 'away');
     }
     if (home == null) {
-      throw new BuiltValueNullFieldError('StatTrackerState', 'home');
+      throw new BuiltValueNullFieldError('GameState', 'home');
     }
     if (inning == null) {
-      throw new BuiltValueNullFieldError('StatTrackerState', 'inning');
+      throw new BuiltValueNullFieldError('GameState', 'inning');
     }
     if (inningType == null) {
-      throw new BuiltValueNullFieldError('StatTrackerState', 'inningType');
+      throw new BuiltValueNullFieldError('GameState', 'inningType');
     }
   }
 
   @override
-  StatTrackerState rebuild(void Function(StatTrackerStateBuilder) updates) =>
+  GameState rebuild(void Function(GameStateBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  StatTrackerStateBuilder toBuilder() =>
-      new StatTrackerStateBuilder()..replace(this);
+  GameStateBuilder toBuilder() => new GameStateBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is StatTrackerState &&
+    return other is GameState &&
         history == other.history &&
         away == other.away &&
         home == other.home &&
@@ -71,7 +69,7 @@ class _$StatTrackerState extends StatTrackerState {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('StatTrackerState')
+    return (newBuiltValueToStringHelper('GameState')
           ..add('history', history)
           ..add('away', away)
           ..add('home', home)
@@ -81,9 +79,8 @@ class _$StatTrackerState extends StatTrackerState {
   }
 }
 
-class StatTrackerStateBuilder
-    implements Builder<StatTrackerState, StatTrackerStateBuilder> {
-  _$StatTrackerState _$v;
+class GameStateBuilder implements Builder<GameState, GameStateBuilder> {
+  _$GameState _$v;
 
   HistoryStateBuilder _history;
   HistoryStateBuilder get history =>
@@ -106,9 +103,9 @@ class StatTrackerStateBuilder
   InningType get inningType => _$this._inningType;
   set inningType(InningType inningType) => _$this._inningType = inningType;
 
-  StatTrackerStateBuilder();
+  GameStateBuilder();
 
-  StatTrackerStateBuilder get _$this {
+  GameStateBuilder get _$this {
     if (_$v != null) {
       _history = _$v.history?.toBuilder();
       _away = _$v.away?.toBuilder();
@@ -121,24 +118,24 @@ class StatTrackerStateBuilder
   }
 
   @override
-  void replace(StatTrackerState other) {
+  void replace(GameState other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$StatTrackerState;
+    _$v = other as _$GameState;
   }
 
   @override
-  void update(void Function(StatTrackerStateBuilder) updates) {
+  void update(void Function(GameStateBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$StatTrackerState build() {
-    _$StatTrackerState _$result;
+  _$GameState build() {
+    _$GameState _$result;
     try {
       _$result = _$v ??
-          new _$StatTrackerState._(
+          new _$GameState._(
               history: history.build(),
               away: away.build(),
               home: home.build(),
@@ -155,7 +152,7 @@ class StatTrackerStateBuilder
         home.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'StatTrackerState', _$failedField, e.toString());
+            'GameState', _$failedField, e.toString());
       }
       rethrow;
     }

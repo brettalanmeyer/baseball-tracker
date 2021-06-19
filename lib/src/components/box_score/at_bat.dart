@@ -1,10 +1,10 @@
-import 'package:baseball_stat_tracker/src/state/stat_tracker_state.sg.dart';
+import 'package:baseball_stat_tracker/src/state/game_state.sg.dart';
 import 'package:over_react/over_react.dart';
 import 'package:over_react/over_react_redux.dart';
 
 part 'at_bat.over_react.g.dart'; // ignore: uri_has_not_been_generated
 
-UiFactory<AtBatProps> AtBat = connect<StatTrackerState, AtBatProps>(
+UiFactory<AtBatProps> AtBat = connect<GameState, AtBatProps>(
   mapStateToProps: ((state) {
     return (AtBat());
   }),

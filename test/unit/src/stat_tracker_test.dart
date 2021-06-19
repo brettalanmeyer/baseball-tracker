@@ -44,6 +44,8 @@ void main() {
       expect(store.state.inning, equals(0));
       store.dispatch(PlayBall());
       expect(store.state.inning, equals(1));
+
+      
     });
   });
 }

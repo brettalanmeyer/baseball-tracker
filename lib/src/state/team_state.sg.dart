@@ -4,7 +4,7 @@ import 'package:baseball_stat_tracker/src/teams/team.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 
-part 'team.sg.g.dart';
+part 'team_state.sg.g.dart';
 
 abstract class TeamState implements Built<TeamState, TeamStateBuilder> {
   factory TeamState({
