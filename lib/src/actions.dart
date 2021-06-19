@@ -1,12 +1,12 @@
 import 'package:baseball_stat_tracker/src/teams/team.dart';
 
-class SetTeams {
+class SetTeams with History {
   final Team away;
   final Team home;
   SetTeams(this.away, this.home);
 }
 
-class SetDefense {
+class SetDefense with History {
   final Team team;
   final Player pitcher;
   final Player catcher;
@@ -31,20 +31,26 @@ class SetDefense {
   });
 }
 
-class SetBattingOrder {
+class SetBattingOrder with History {
   final Team team;
   final List<Player> battingOrder;
   SetBattingOrder(this.team, this.battingOrder);
 }
 
-class PlayBall {}
+class PlayBall with History {}
 
-class SetAwayScores {
+class SetAwayScores with History {
   final List<int> scores;
   SetAwayScores(this.scores);
 }
 
-class SetHomeScores {
+class SetHomeScores with History {
   final List<int> scores;
   SetHomeScores(this.scores);
 }
+
+class Undo {}
+
+class Redo {}
+
+mixin History {}

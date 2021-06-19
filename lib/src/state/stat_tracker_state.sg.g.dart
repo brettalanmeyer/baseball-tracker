@@ -8,6 +8,8 @@ part of stat_tracker_state;
 
 class _$StatTrackerState extends StatTrackerState {
   @override
+  final HistoryState history;
+  @override
   final TeamState away;
   @override
   final TeamState home;
@@ -20,8 +22,18 @@ class _$StatTrackerState extends StatTrackerState {
           [void Function(StatTrackerStateBuilder) updates]) =>
       (new StatTrackerStateBuilder()..update(updates)).build();
 
-  _$StatTrackerState._({this.away, this.home, this.inning, this.inningType})
+  _$StatTrackerState._(
+      {this.history, this.away, this.home, this.inning, this.inningType})
       : super._() {
+    if (history == null) {
+      throw new BuiltValueNullFieldError('StatTrackerState', 'history');
+    }
+    if (away == null) {
+      throw new BuiltValueNullFieldError('StatTrackerState', 'away');
+    }
+    if (home == null) {
+      throw new BuiltValueNullFieldError('StatTrackerState', 'home');
+    }
     if (inning == null) {
       throw new BuiltValueNullFieldError('StatTrackerState', 'inning');
     }
@@ -42,6 +54,7 @@ class _$StatTrackerState extends StatTrackerState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is StatTrackerState &&
+        history == other.history &&
         away == other.away &&
         home == other.home &&
         inning == other.inning &&
@@ -51,13 +64,15 @@ class _$StatTrackerState extends StatTrackerState {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, away.hashCode), home.hashCode), inning.hashCode),
+        $jc($jc($jc($jc(0, history.hashCode), away.hashCode), home.hashCode),
+            inning.hashCode),
         inningType.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('StatTrackerState')
+          ..add('history', history)
           ..add('away', away)
           ..add('home', home)
           ..add('inning', inning)
@@ -69,6 +84,11 @@ class _$StatTrackerState extends StatTrackerState {
 class StatTrackerStateBuilder
     implements Builder<StatTrackerState, StatTrackerStateBuilder> {
   _$StatTrackerState _$v;
+
+  HistoryStateBuilder _history;
+  HistoryStateBuilder get history =>
+      _$this._history ??= new HistoryStateBuilder();
+  set history(HistoryStateBuilder history) => _$this._history = history;
 
   TeamStateBuilder _away;
   TeamStateBuilder get away => _$this._away ??= new TeamStateBuilder();
@@ -90,6 +110,7 @@ class StatTrackerStateBuilder
 
   StatTrackerStateBuilder get _$this {
     if (_$v != null) {
+      _history = _$v.history?.toBuilder();
       _away = _$v.away?.toBuilder();
       _home = _$v.home?.toBuilder();
       _inning = _$v.inning;
@@ -118,17 +139,20 @@ class StatTrackerStateBuilder
     try {
       _$result = _$v ??
           new _$StatTrackerState._(
-              away: _away?.build(),
-              home: _home?.build(),
+              history: history.build(),
+              away: away.build(),
+              home: home.build(),
               inning: inning,
               inningType: inningType);
     } catch (_) {
       String _$failedField;
       try {
+        _$failedField = 'history';
+        history.build();
         _$failedField = 'away';
-        _away?.build();
+        away.build();
         _$failedField = 'home';
-        _home?.build();
+        home.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'StatTrackerState', _$failedField, e.toString());

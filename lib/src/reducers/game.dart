@@ -1,8 +1,7 @@
+import 'package:baseball_stat_tracker/src/actions.dart';
 import 'package:baseball_stat_tracker/src/state/stat_tracker_state.sg.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:redux/redux.dart';
-
-import 'actions.dart';
 
 StatTrackerState _setTeams(StatTrackerState state, SetTeams action) {
   return state.rebuild((b) {
@@ -48,7 +47,7 @@ StatTrackerState _setHomeScores(StatTrackerState state, SetHomeScores action) {
   return state.rebuild((b) => b.home.scores =  ListBuilder(action.scores));
 }
 
-Reducer<StatTrackerState> statTrackerReducer = combineReducers<StatTrackerState>([
+Reducer<StatTrackerState> gameReducer = combineReducers<StatTrackerState>([
   TypedReducer<StatTrackerState, SetTeams>(_setTeams),
   TypedReducer<StatTrackerState, SetDefense>(_setDefense),
   TypedReducer<StatTrackerState, SetBattingOrder>(_setBattingOrder),

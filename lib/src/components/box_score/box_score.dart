@@ -6,7 +6,7 @@ import 'package:over_react/over_react_redux.dart';
 
 import 'at_bat.dart';
 
-part 'box_score.over_react.g.dart';
+part 'box_score.over_react.g.dart'; // ignore: uri_has_not_been_generated
 
 UiFactory<BoxScoreProps> BoxScore = connect<StatTrackerState, BoxScoreProps>(
   mapStateToProps: ((state) {
