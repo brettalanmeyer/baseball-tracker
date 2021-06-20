@@ -85,6 +85,20 @@ void main() {
 
       expect(store.state.inning, equals(1));
       expect(store.state.inningType, equals(InningType.middle));
+
+      store.dispatch(PlayBall());
+      expect(store.state.inning, equals(1));
+      expect(store.state.inningType, equals(InningType.bottom));
+
+      strikeOut();
+      strikeOut();
+      strikeOut();
+      expect(store.state.inning, equals(1));
+      expect(store.state.inningType, equals(InningType.end));
+
+      store.dispatch(PlayBall());
+      expect(store.state.inning, equals(2));
+      expect(store.state.inningType, equals(InningType.top));
     });
   });
 }

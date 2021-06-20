@@ -63,6 +63,8 @@ class Pitch with History {
   });
 }
 
+class Balk with History {}
+
 class PlayBall with History {}
 
 class Undo {}

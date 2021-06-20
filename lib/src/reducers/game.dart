@@ -60,17 +60,10 @@ GameState _pitch(GameState state, Pitch action) {
     switch(action.result) {
       case PitchResult.strike:
         b.strikes++;
-        if (b.strikes == 3) {
-          b.strikes = 0;
-          b.outs++;
-        }
         break;
 
       case PitchResult.ball:
         b.balls++;
-        if (b.balls == 4) {
-          b.balls = 0;
-        }
         break;
 
       case PitchResult.foul:
@@ -84,6 +77,25 @@ GameState _pitch(GameState state, Pitch action) {
 
       case PitchResult.hitByPitch:
         break;
+    }
+
+    if (b.strikes == 3) {
+      b.strikes = 0;
+      b.balls = 0;
+      b.outs++;
+    }
+
+    if (b.balls == 4) {
+      b.strikes = 0;
+      b.balls = 0;
+    }
+
+    if (b.outs == 3) {
+      if (b.inningType == InningType.top) {
+        b.inningType = InningType.middle;
+      } else if (b.inningType == InningType.bottom) {
+        b.inningType = InningType.end;
+      }
     }
   });
 }
